@@ -1,28 +1,29 @@
 /* ==========================================================================
-   Terminal Theme - Neon Glitch Cyberpunk
+   Terminal Theme - Street Cyber Graffiti
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Fira+Code:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@400;700&display=swap');
 
 :root {
-  /* Cyberpunk High-Contrast Palette */
-  --cyber-black: #050505;
-  --cyber-gray: #1a1a1a;
+  /* Futuristic Neon & Street Grit Palette */
+  --cyber-black: #020205;
+  --cyber-dark: #0a0a0f;
   --cyber-pink: #ff00ff;
   --cyber-blue: #00ffff;
   --cyber-yellow: #f0e600;
   --cyber-green: #39ff14;
   --cyber-purple: #bc13fe;
   
-  --text-main: #ffffff;
+  --text-main: #f0f0f5;
   --text-dim: #00ffff;
-  --text-muted: #666666;
+  --text-muted: #4a4a6a;
   
   --font-body: 'Rajdhani', sans-serif;
   --font-heading: 'Orbitron', sans-serif;
+  --font-graffiti: 'Permanent+Marker', cursive;
   --font-mono: 'Fira Code', monospace;
   
-  --content-width: 800px;
+  --content-width: 860px;
 }
 
 /* ==========================================================================
@@ -39,71 +40,50 @@ body {
   background: var(--cyber-black);
   color: var(--text-main);
   font-family: var(--font-body);
-  line-height: 1.5;
+  line-height: 1.6;
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
   overflow-x: hidden;
-  position: relative;
-}
-
-body::before {
-  content: " ";
-  display: block;
-  position: fixed;
-  top: 0; left: 0; bottom: 0; right: 0;
-  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-  z-index: 9999;
-  pointer-events: none;
-  background-size: 100% 2px, 3px 100%;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(188, 19, 254, 0.15), transparent 70%),
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 100%, 100% 4px, 4px 100%;
 }
 
 /* ==========================================================================
-   Terminal Container (Cyberdeck Style)
+   Container (Cyberdeck Frame)
    ========================================================================== */
 
 .terminal {
   width: 100%;
   max-width: var(--content-width);
-  background: rgba(10, 10, 10, 0.9);
-  border: 2px solid var(--cyber-pink);
-  box-shadow: 0 0 20px var(--cyber-pink), inset 0 0 10px var(--cyber-pink);
+  background: rgba(5, 5, 10, 0.95);
+  border: 2px solid var(--cyber-blue);
+  box-shadow: 
+    0 0 30px rgba(0, 255, 255, 0.2),
+    inset 0 0 20px rgba(0, 255, 255, 0.1);
   position: relative;
-  clip-path: polygon(0% 0%, 100% 0%, 100% 95%, 95% 100%, 0% 100%);
+  clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
 }
 
 .terminal__titlebar {
-  background: var(--cyber-pink);
+  background: linear-gradient(90deg, var(--cyber-blue), var(--cyber-purple));
   color: black;
-  padding: 8px 20px;
+  padding: 12px 25px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: var(--font-heading);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.terminal__buttons {
-  display: flex;
-  gap: 10px;
-}
-
-.terminal__button {
-  width: 12px;
-  height: 12px;
-  background: black;
-  border: 1px solid white;
-}
-
-.terminal__title {
-  font-size: 0.8rem;
+  letter-spacing: 3px;
 }
 
 .terminal__body {
-  padding: 40px;
+  padding: 50px;
 }
 
 /* ==========================================================================
@@ -113,125 +93,177 @@ body::before {
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-bottom: 60px;
-  border-bottom: 1px solid var(--cyber-blue);
-  padding-bottom: 20px;
+  gap: 30px;
+  margin-bottom: 80px;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.2);
+  padding-bottom: 30px;
 }
 
 .nav__logo {
-  font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 2.5rem;
   color: var(--cyber-yellow);
-  text-shadow: 2px 2px var(--cyber-pink);
+  text-shadow: 4px 4px 0px var(--cyber-pink);
+  transform: rotate(-2deg);
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
 .nav__menu {
   display: flex;
   list-style: none;
-  gap: 25px;
+  gap: 30px;
 }
 
 .nav__link {
-  font-family: var(--font-mono);
-  font-size: 1rem;
-  color: var(--cyber-blue);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--text-dim);
   text-transform: uppercase;
-  transition: all 0.2s;
+  transition: all 0.3s;
+  letter-spacing: 2px;
 }
 
 .nav__link:hover, .nav__link--active {
-  background: var(--cyber-blue);
-  color: black;
-  box-shadow: 0 0 10px var(--cyber-blue);
+  color: var(--cyber-pink);
+  text-shadow: 0 0 10px var(--cyber-pink);
 }
 
 /* ==========================================================================
-   Homepage Hero
+   Content Sections
    ========================================================================== */
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
-  color: var(--cyber-yellow);
-  margin-bottom: 40px;
+  font-size: 3.5rem;
+  color: white;
+  margin-bottom: 50px;
   line-height: 1;
   text-transform: uppercase;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
 .hero__title .cursor {
-  background: var(--cyber-green);
-  box-shadow: 0 0 10px var(--cyber-green);
+  background: var(--cyber-pink);
+  box-shadow: 0 0 15px var(--cyber-pink);
 }
 
 /* ==========================================================================
-   Post List
-   ========================================================================== */
-
-.post-list__item {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 15px 0;
-  border-bottom: 1px dashed var(--cyber-gray);
-}
-
-.post-list__date {
-  font-family: var(--font-mono);
-  color: var(--cyber-pink);
-  font-size: 0.9rem;
-}
-
-.post-list__link {
-  font-family: var(--font-heading);
-  font-size: 1.2rem;
-  color: var(--text-main);
-  transition: 0.2s;
-}
-
-.post-list__link:hover {
-  color: var(--cyber-yellow);
-  padding-left: 10px;
-}
-
-/* ==========================================================================
-   Post Content
+   Post Formatting (Markdown Styles)
    ========================================================================== */
 
 .post__title {
-  font-family: var(--font-heading);
-  font-size: 3rem;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 4rem;
   color: var(--cyber-yellow);
-  text-shadow: 3px 3px var(--cyber-pink);
-  margin-bottom: 30px;
+  text-shadow: 5px 5px 0px var(--cyber-purple);
+  margin-bottom: 40px;
+  line-height: 1.1;
+  transform: rotate(-1deg);
 }
 
 .post__content {
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  font-weight: 300;
+  letter-spacing: 0.5px;
 }
 
 .post__content h2 {
   font-family: var(--font-heading);
+  font-size: 2rem;
   color: var(--cyber-blue);
-  margin: 40px 0 20px;
-  border-left: 5px solid var(--cyber-pink);
-  padding-left: 15px;
+  margin: 60px 0 30px;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--cyber-pink);
+  display: inline-block;
+  padding-right: 50px;
 }
 
-.post__content code {
+.post__content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--cyber-green);
+  margin: 40px 0 20px;
+}
+
+.post__content p {
+  margin-bottom: 30px;
+}
+
+/* Tables - High Tech Look */
+.post__content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 40px 0;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--cyber-purple);
+}
+
+.post__content th {
+  background: var(--cyber-purple);
+  color: white;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  padding: 15px;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.post__content td {
+  padding: 15px;
+  border-bottom: 1px solid rgba(188, 19, 254, 0.2);
+}
+
+.post__content tr:hover {
+  background: rgba(0, 255, 255, 0.05);
+}
+
+/* Multimedia - Glitchy Frames */
+.post__content img, .post__content video {
+  max-width: 100%;
+  height: auto;
+  border: 2px solid var(--cyber-blue);
+  box-shadow: 10px 10px 0px var(--cyber-pink);
+  margin: 50px 0;
+  display: block;
+}
+
+/* Blockquotes as Hack Intel */
+.post__content blockquote {
+  background: rgba(0, 255, 255, 0.05);
+  border-left: 10px solid var(--cyber-blue);
+  padding: 30px;
+  margin: 40px 0;
+  font-style: italic;
+  position: relative;
+}
+
+.post__content blockquote::before {
+  content: "INTEL_DATA_BLOCK";
+  position: absolute;
+  top: -12px;
+  left: 10px;
   background: var(--cyber-blue);
   color: black;
-  padding: 2px 6px;
   font-family: var(--font-mono);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  font-style: normal;
 }
 
-.post__content blockquote {
-  background: rgba(255, 0, 255, 0.1);
-  border-left: 5px solid var(--cyber-pink);
-  padding: 20px;
-  margin: 30px 0;
-  font-style: italic;
-  color: var(--cyber-yellow);
+/* Lists */
+.post__content ul, .post__content ol {
+  margin-bottom: 30px;
+  padding-left: 30px;
+}
+
+.post__content li {
+  margin-bottom: 15px;
+}
+
+.post__content li::marker {
+  color: var(--cyber-pink);
+  font-family: var(--font-heading);
 }
 
 /* ==========================================================================
@@ -239,25 +271,29 @@ body::before {
    ========================================================================== */
 
 .footer__content {
-  margin-top: 60px;
-  padding-top: 20px;
-  border-top: 2px solid var(--cyber-pink);
+  margin-top: 100px;
+  padding-top: 40px;
+  border-top: 2px solid var(--cyber-blue);
   font-family: var(--font-mono);
   color: var(--cyber-green);
+  display: flex;
+  justify-content: space-between;
 }
 
 .cursor {
   display: inline-block;
   width: 12px;
   height: 1.2em;
-  background: var(--cyber-blue);
+  background: var(--cyber-pink);
+  box-shadow: 0 0 10px var(--cyber-pink);
   animation: blink 0.8s infinite;
 }
 
 @keyframes blink { 50% { opacity: 0; } }
 
 @media (max-width: 768px) {
-  .hero__title { font-size: 1.8rem; }
-  .post__title { font-size: 2rem; }
-  .terminal__body { padding: 20px; }
+  .post__title { font-size: 2.5rem; }
+  .hero__title { font-size: 2rem; }
+  .terminal__body { padding: 25px; }
+  .nav__logo { font-size: 1.8rem; }
 }
