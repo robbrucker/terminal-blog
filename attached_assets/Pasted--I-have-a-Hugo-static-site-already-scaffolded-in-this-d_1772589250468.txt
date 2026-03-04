@@ -1,0 +1,37 @@
+ I have a Hugo static site already scaffolded in this directory with a custom theme at themes/terminal/. I need you to design and implement the visual theme. Here's what I want:
+
+  Concept: A personal blog that looks like a macOS terminal window (VS Code/iTerm2 style). Dark theme, monospace accents, developer aesthetic.
+
+  Color Palette: Catppuccin Mocha — soft pastels on a dark background:
+  - Background: #1e1e2e (base), #181825 (mantle/titlebar), #11111b (page bg behind terminal)
+  - Text: #cdd6f4 (primary), #a6adc8 (secondary), #7f849c (muted)
+  - Accents: #a6e3a1 (green, for usernames/active states), #89b4fa (blue, for links/hostnames), #cba6f7 (purple/mauve, for tags/paths), #fab387 (peach, for inline code), #f9e2af (yellow, for echo commands)
+
+  Fonts: JetBrains Mono (headings, code, nav, terminal elements) + Inter (body text) via Google Fonts.
+
+  Layout:
+  - Content width: 720px max, centered on page
+  - The entire site is wrapped in a macOS-style terminal window frame with:
+    - A titlebar with traffic-light buttons (red #ff5f57, yellow #febc2e, green #28c840) and centered title text showing rob@blog:~$ hugo server
+    - Rounded corners (10px) on desktop, edge-to-edge on mobile
+    - Subtle box shadow: 0 20px 60px rgba(0,0,0,0.5)
+
+  Navigation: Terminal prompt-style logo rob@blog:~$ with colored segments (green user, blue host, purple path). Menu links use ~/ prefixes like ~/home, ~/posts, ~/about. Mobile gets a hamburger menu.
+
+  Homepage: Hero section with tagline + blinking block cursor (█), followed by recent posts list with $ ls ~/posts --recent heading.
+
+  Post list: Date-first layout (monospace dates on left, title links, --tag style tags in purple).
+
+  Single post: Title shown as $ cat filename.md in green. Post metadata (date, reading time, category). Markdown headings get ## prefix in purple. Styled blockquotes with purple left border. Code blocks use Dracula syntax highlighting (already
+  generated at static/css/syntax.css). Tag links as --tagname. Prev/next navigation.
+
+  Footer: Terminal prompt + echo "© 2026 Rob. Built with Hugo." with blinking cursor.
+
+  Typography: 1.8 line-height for body text. Inline code gets peach color with dark background pill. Tables have monospace headers in blue.
+
+  Responsive: At 768px, terminal goes edge-to-edge, hamburger menu appears. At 480px, reduce base font size, hide titlebar text.
+
+  JavaScript: Minimal — only the mobile hamburger toggle (5 lines).
+
+  The Hugo templates are already written in themes/terminal/layouts/. Focus on the CSS in themes/terminal/static/css/style.css. The existing templates use BEM-style class names (.terminal__titlebar, .nav__logo, .post-list__item, etc.).
+
