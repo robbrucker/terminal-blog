@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="{{ site.Language.LanguageCode }}" dir="{{ or site.Language.LanguageDirection `ltr` }}">
+<head>
+  {{ partial "head.html" . }}
+</head>
+<body>
+  <div class="terminal">
+    <div class="terminal__titlebar">
+      <div class="terminal__buttons">
+        <span class="terminal__button terminal__button--close"></span>
+        <span class="terminal__button terminal__button--minimize"></span>
+        <span class="terminal__button terminal__button--maximize"></span>
+      </div>
+      <div class="terminal__title">{{ site.Params.prompt }} hugo server</div>
+    </div>
+    <div class="terminal__body">
+      <header>
+        {{ partial "header.html" . }}
+      </header>
+      <main class="main">
+        {{ block "main" . }}{{ end }}
+      </main>
+      <footer class="footer">
+        {{ partial "footer.html" . }}
+      </footer>
+    </div>
+  </div>
+</body>
+</html>

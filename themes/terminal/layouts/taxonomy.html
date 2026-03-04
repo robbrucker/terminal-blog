@@ -1,0 +1,11 @@
+{{ define "main" }}
+<section class="archive">
+  <h1 class="section__title"><span class="prompt__dollar">$</span> ls {{ .Title }}</h1>
+  {{ .Content }}
+  <ul class="tag-list">
+    {{ range .Pages }}
+    <li><a href="{{ .RelPermalink }}" class="tag">--{{ .LinkTitle }}</a> <span class="tag-list__count">({{ len .Pages }})</span></li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

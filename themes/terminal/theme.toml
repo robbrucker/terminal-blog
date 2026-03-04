@@ -1,0 +1,9 @@
+name = "Terminal"
+license = "MIT"
+licenselink = ""
+description = "A dark terminal-themed Hugo blog with Catppuccin Mocha colors"
+tags = ["terminal", "dark", "blog", "monospace", "catppuccin"]
+min_version = "0.146.0"
+
+[author]
+  name = "Rob"

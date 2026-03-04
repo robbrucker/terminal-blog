@@ -1,0 +1,34 @@
+baseURL = 'https://example.org/'
+languageCode = 'en-us'
+title = 'rob@blog:~$'
+theme = 'terminal'
+
+[markup]
+  [markup.highlight]
+    noClasses = false
+    lineNos = true
+    lineNumbersInTable = true
+
+[params]
+  prompt = 'rob@blog:~$'
+  tagline = 'Software engineer. Terminal enthusiast. Occasional writer.'
+  author = 'Rob'
+  dateFormat = 'January 2, 2006'
+
+[menus]
+  [[menus.main]]
+    name = '~/home'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = '~/posts'
+    pageRef = '/posts'
+    weight = 20
+  [[menus.main]]
+    name = '~/about'
+    pageRef = '/about'
+    weight = 30
+
+[taxonomies]
+  tag = 'tags'
+  category = 'categories'

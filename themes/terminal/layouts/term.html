@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="archive">
+  <h1 class="section__title"><span class="prompt__dollar">$</span> grep --{{ .Title }}</h1>
+  {{ .Content }}
+  <ul class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <li class="post-list__item">
+      <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="post-list__date">{{ .Date | time.Format "Jan 02, 2006" }}</time>
+      <a href="{{ .RelPermalink }}" class="post-list__link">{{ .Title }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

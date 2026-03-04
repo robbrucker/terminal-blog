@@ -1,0 +1,11 @@
+<div class="post-meta">
+  {{ $dateMachine := .Date | time.Format "2006-01-02T15:04:05-07:00" }}
+  {{ $dateHuman := .Date | time.Format site.Params.dateFormat }}
+  <time datetime="{{ $dateMachine }}" class="post-meta__date">{{ $dateHuman }}</time>
+  <span class="post-meta__separator">·</span>
+  <span class="post-meta__reading-time">{{ .ReadingTime }} min read</span>
+  {{ with .Params.categories }}
+  <span class="post-meta__separator">·</span>
+  {{ range . }}<span class="post-meta__category">{{ . }}</span>{{ end }}
+  {{ end }}
+</div>

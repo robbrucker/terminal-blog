@@ -1,0 +1,23 @@
+<nav class="nav">
+  <a href="/" class="nav__logo">
+    <span class="prompt__user">rob</span><span class="prompt__at">@</span><span class="prompt__host">blog</span><span class="prompt__colon">:</span><span class="prompt__path">~</span><span class="prompt__dollar">$</span>
+  </a>
+  <button class="nav__hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav__menu">
+    {{ range site.Menus.main }}
+    <li>
+      <a href="{{ .URL }}" class="nav__link{{ if $.IsMenuCurrent "main" . }} nav__link--active{{ end }}">{{ .Name }}</a>
+    </li>
+    {{ end }}
+  </ul>
+</nav>
+<script>
+document.querySelector('.nav__hamburger').addEventListener('click', function() {
+  const expanded = this.getAttribute('aria-expanded') === 'true';
+  this.setAttribute('aria-expanded', !expanded);
+  this.classList.toggle('is-active');
+  document.querySelector('.nav__menu').classList.toggle('is-open');
+});
+</script>
