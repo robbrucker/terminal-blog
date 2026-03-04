@@ -1,0 +1,12 @@
+<section class="comment-terminal" data-post-title="{{ .Title }}" data-issue="{{ with .Params.issue }}{{ . }}{{ end }}">
+  <h2 class="comment-terminal__header">
+    <span class="prompt__dollar">$</span> ./comments
+  </h2>
+  <div class="comment-terminal__screen" id="comment-screen">
+    <div class="comment-terminal__output" id="comment-output"></div>
+    <div class="comment-terminal__input-line">
+      <span class="comment-terminal__prompt">visitor@command-shack:~$</span>
+      <input type="text" class="comment-terminal__input" id="comment-input" autocomplete="off" spellcheck="false" autofocus>
+    </div>
+  </div>
+</section>

@@ -11,7 +11,11 @@
         <span class="terminal__button terminal__button--minimize"></span>
         <span class="terminal__button terminal__button--maximize"></span>
       </div>
-      <div class="terminal__title">{{ site.Params.prompt }} hugo server</div>
+      <div class="terminal__title">{{ site.Params.prompt }} command shack</div>
+    </div>
+    <div class="hn-ticker" id="hn-ticker">
+      <span class="hn-ticker__label">HN</span>
+      <div class="hn-ticker__track"></div>
     </div>
     <div class="terminal__body">
       <header>
@@ -25,5 +29,249 @@
       </footer>
     </div>
   </div>
+<script>
+// Hacker News Ticker
+(function() {
+  const ticker = document.getElementById('hn-ticker');
+  if (!ticker) return;
+
+  fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+    .then(r => r.json())
+    .then(ids => Promise.all(
+      ids.slice(0, 20).map(id =>
+        fetch('https://hacker-news.firebaseio.com/v0/item/' + id + '.json').then(r => r.json())
+      )
+    ))
+    .then(stories => {
+      const track = ticker.querySelector('.hn-ticker__track');
+      const html = stories.map(s =>
+        '<span class="hn-ticker__item">' +
+          '<span class="hn-score">▲' + s.score + '</span>' +
+          '<a href="https://news.ycombinator.com/item?id=' + s.id + '" target="_blank" rel="noopener">' +
+            s.title +
+          '</a>' +
+        '</span>'
+      ).join('');
+      // Duplicate for seamless loop
+      track.innerHTML = html + html;
+    })
+    .catch(() => {
+      ticker.style.display = 'none';
+    });
+})();
+</script>
+<script>
+// Comment Terminal
+(function() {
+  const input = document.getElementById('comment-input');
+  const output = document.getElementById('comment-output');
+  const screen = document.getElementById('comment-screen');
+  if (!input || !output) return;
+
+  const REPO = 'robbrucker/terminal-blog';
+  const terminal = document.querySelector('.comment-terminal');
+  const postTitle = terminal.dataset.postTitle;
+  const issueFromFrontmatter = terminal.dataset.issue;
+  let comments = [];
+  let issueNumber = issueFromFrontmatter ? parseInt(issueFromFrontmatter) : null;
+  let history = [];
+  let historyIdx = -1;
+
+  function print(html) {
+    output.innerHTML += html + '\n';
+    screen.scrollTop = screen.scrollHeight;
+  }
+
+  function printHelp() {
+    print('<span class="cmd-help">┌─────────────────────────────────────────┐</span>');
+    print('<span class="cmd-help">│  COMMAND SHACK COMMENT TERMINAL v1.0    │</span>');
+    print('<span class="cmd-help">├─────────────────────────────────────────┤</span>');
+    print('<span class="cmd-help">│  help          show this message        │</span>');
+    print('<span class="cmd-help">│  ls            list all comments         │</span>');
+    print('<span class="cmd-help">│  cat &lt;n&gt;       read comment #n           │</span>');
+    print('<span class="cmd-help">│  post          leave a comment           │</span>');
+    print('<span class="cmd-help">│  grep &lt;term&gt;   search comments           │</span>');
+    print('<span class="cmd-help">│  clear         clear terminal            │</span>');
+    print('<span class="cmd-help">└─────────────────────────────────────────┘</span>');
+  }
+
+  async function fetchComments() {
+    try {
+      // If no issue number from frontmatter, search for one
+      if (!issueNumber) {
+        const searchUrl = 'https://api.github.com/search/issues?q=' +
+          encodeURIComponent('"' + postTitle + '" repo:' + REPO + ' type:issue in:title');
+        const searchRes = await fetch(searchUrl);
+        const searchData = await searchRes.json();
+        if (searchData.items && searchData.items.length > 0) {
+          issueNumber = searchData.items[0].number;
+        }
+      }
+
+      if (!issueNumber) return false;
+
+      const commentsUrl = 'https://api.github.com/repos/' + REPO + '/issues/' + issueNumber + '/comments?per_page=100';
+      const commentsRes = await fetch(commentsUrl);
+      if (!commentsRes.ok) return false;
+      comments = await commentsRes.json();
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  function formatComment(c, idx) {
+    const date = new Date(c.created_at).toLocaleDateString('en-US', {
+      year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit'
+    });
+    return '<span class="cmd-comment">' +
+      '<span class="cmd-comment-author">#' + (idx + 1) + ' ' + c.user.login + '</span> ' +
+      '<span class="cmd-comment-date">' + date + '</span>\n' +
+      '<span class="cmd-comment-body">' + escapeHtml(c.body) + '</span>' +
+      '</span>';
+  }
+
+  function escapeHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  async function runCommand(cmd) {
+    const parts = cmd.trim().split(/\s+/);
+    const command = parts[0].toLowerCase();
+    const args = parts.slice(1).join(' ');
+
+    print('<span class="cmd-prompt">visitor@command-shack:~$</span> ' + escapeHtml(cmd));
+
+    switch (command) {
+      case 'help':
+        printHelp();
+        break;
+
+      case 'ls':
+        print('<span class="cmd-info">fetching comments...</span>');
+        const found = await fetchComments();
+        if (!found || comments.length === 0) {
+          print('<span class="cmd-info">no comments yet. be the first — type "post"</span>');
+        } else {
+          print('<span class="cmd-info">' + comments.length + ' comment(s) found:\n</span>');
+          comments.forEach(function(c, i) {
+            const date = new Date(c.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            print('  <span class="cmd-comment-author">#' + (i+1) + '</span> ' +
+              '<span class="cmd-comment-date">' + date + '</span> ' +
+              '<span class="cmd-comment-author">' + c.user.login + '</span> — ' +
+              escapeHtml(c.body.substring(0, 80)) + (c.body.length > 80 ? '...' : ''));
+          });
+          print('\n<span class="cmd-info">use "cat &lt;n&gt;" to read full comment</span>');
+        }
+        break;
+
+      case 'cat':
+        if (!args || isNaN(parseInt(args))) {
+          print('<span class="cmd-error">usage: cat &lt;comment_number&gt;</span>');
+          break;
+        }
+        if (comments.length === 0) {
+          print('<span class="cmd-info">fetching comments...</span>');
+          await fetchComments();
+        }
+        const idx = parseInt(args) - 1;
+        if (idx < 0 || idx >= comments.length) {
+          print('<span class="cmd-error">comment #' + args + ' not found. ' + comments.length + ' comment(s) available.</span>');
+        } else {
+          print(formatComment(comments[idx], idx));
+        }
+        break;
+
+      case 'post':
+        const issueUrl = issueNumber
+          ? 'https://github.com/' + REPO + '/issues/' + issueNumber
+          : 'https://github.com/' + REPO + '/issues/new?title=' + encodeURIComponent(postTitle) + '&body=' + encodeURIComponent('Comments for: ' + postTitle);
+        print('<span class="cmd-info">opening GitHub to post comment...</span>');
+        print('<span class="cmd-info">(requires a GitHub account)</span>');
+        print('<a href="' + issueUrl + '" target="_blank" rel="noopener">' + issueUrl + '</a>');
+        window.open(issueUrl, '_blank');
+        break;
+
+      case 'grep':
+        if (!args) {
+          print('<span class="cmd-error">usage: grep &lt;search_term&gt;</span>');
+          break;
+        }
+        if (comments.length === 0) {
+          print('<span class="cmd-info">fetching comments...</span>');
+          await fetchComments();
+        }
+        const term = args.toLowerCase();
+        const matches = comments.filter(function(c) {
+          return c.body.toLowerCase().includes(term) || c.user.login.toLowerCase().includes(term);
+        });
+        if (matches.length === 0) {
+          print('<span class="cmd-error">no matches for "' + escapeHtml(args) + '"</span>');
+        } else {
+          print('<span class="cmd-info">' + matches.length + ' match(es):\n</span>');
+          matches.forEach(function(c) {
+            const origIdx = comments.indexOf(c);
+            print(formatComment(c, origIdx));
+          });
+        }
+        break;
+
+      case 'clear':
+        output.innerHTML = '';
+        break;
+
+      case '':
+        break;
+
+      default:
+        print('<span class="cmd-error">command not found: ' + escapeHtml(command) + '. type "help" for available commands.</span>');
+    }
+  }
+
+  // Handle input
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+      const cmd = input.value;
+      if (cmd.trim()) {
+        history.unshift(cmd);
+        historyIdx = -1;
+      }
+      runCommand(cmd);
+      input.value = '';
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (historyIdx < history.length - 1) {
+        historyIdx++;
+        input.value = history[historyIdx];
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIdx > 0) {
+        historyIdx--;
+        input.value = history[historyIdx];
+      } else {
+        historyIdx = -1;
+        input.value = '';
+      }
+    }
+  });
+
+  // Click anywhere on screen to focus input
+  screen.addEventListener('click', function() { input.focus(); });
+
+  // Boot sequence
+  print('<span class="cmd-info">initializing comment terminal...</span>');
+  printHelp();
+  print('');
+  fetchComments().then(function(found) {
+    if (found) {
+      print('<span class="cmd-info">' + comments.length + ' comment(s) loaded. type "ls" to view.</span>');
+    } else {
+      print('<span class="cmd-info">no comments yet. type "post" to be the first.</span>');
+    }
+    print('');
+  });
+})();
+</script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 {{ define "main" }}
 <article class="post">
   <header class="post__header">
-    <h1 class="post__title"><span class="prompt__dollar">$</span> cat {{ .File.LogicalName }}</h1>
+    <h1 class="post__title" data-text="$ cat {{ .File.LogicalName }}"><span class="prompt__dollar">$</span> cat {{ .File.LogicalName }}</h1>
     {{ partial "post-meta.html" . }}
   </header>
 
@@ -26,4 +26,6 @@
     {{ end }}
   </nav>
 </article>
+
+{{ partial "comments-terminal.html" . }}
 {{ end }}

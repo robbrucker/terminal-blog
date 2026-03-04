@@ -4,6 +4,7 @@ date: 2026-03-03
 draft: false
 tags: ["intro"]
 categories: ["general"]
+issue: 1
 description: "First post. Who I am, what I'm doing, and why this blog exists."
 ---
 

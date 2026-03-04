@@ -1,6 +1,6 @@
 baseURL = 'https://untitled-1.xyz/'
 languageCode = 'en-us'
-title = 'rob@blog:~$'
+title = 'buck@blog:~$'
 theme = 'terminal'
 
 [markup]
@@ -12,9 +12,9 @@ theme = 'terminal'
     lineNumbersInTable = true
 
 [params]
-  prompt = 'rob@blog:~$'
-  tagline = 'Software engineer. Terminal enthusiast. Occasional writer.'
-  author = 'Rob'
+  prompt = 'buck@blog:~$'
+  tagline = 'untitled project #1'
+  author = 'Buck'
   dateFormat = 'January 2, 2006'
 
 [menus]

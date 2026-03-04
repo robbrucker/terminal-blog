@@ -1,7 +1,7 @@
 {{ define "main" }}
 <section class="hero">
   <h1 class="hero__title">
-    <span class="prompt__dollar">$</span> {{ site.Params.tagline }}<span class="cursor">█</span>
+    <span class="prompt__dollar">$</span> <span class="typed-text">{{ site.Params.tagline }}</span><span class="cursor">█</span>
   </h1>
 </section>
 
@@ -11,7 +11,7 @@
     {{ range (where site.RegularPages "Section" "posts").ByDate.Reverse | first 5 }}
     <li class="post-list__item">
       <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="post-list__date">{{ .Date | time.Format "Jan 02" }}</time>
-      <a href="{{ .RelPermalink }}" class="post-list__link">{{ .Title }}</a>
+      <a href="{{ .RelPermalink }}" class="post-list__link" data-text="{{ .Title }}">{{ .Title }}</a>
       {{ range .Params.tags }}
       <span class="tag">--{{ . }}</span>
       {{ end }}

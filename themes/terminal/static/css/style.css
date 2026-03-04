@@ -2,7 +2,7 @@
    Terminal Theme - Street Cyber Graffiti
    ========================================================================== */
 
-@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Loved+by+the+King&family=Permanent+Marker&family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&family=Fira+Code:wght@400;700&display=swap');
 
 :root {
   /* Futuristic Neon & Street Grit Palette */
@@ -135,11 +135,12 @@ body {
 
 .hero__title {
   font-family: var(--font-heading);
-  font-size: 3.5rem;
+  font-size: 2rem;
   color: white;
   margin-bottom: 50px;
   line-height: 1;
   text-transform: uppercase;
+  white-space: nowrap;
   text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
 }
 
@@ -291,6 +292,368 @@ body {
 
 @keyframes blink { 50% { opacity: 0; } }
 
+/* ==========================================================================
+   Glitch Effect on Post Titles
+   ========================================================================== */
+
+.post-list__link,
+.post__title,
+.nav__logo {
+  position: relative;
+  display: inline-block;
+}
+
+.post-list__link:hover,
+.post__title:hover,
+.nav__logo:hover {
+  animation: glitch 0.3s infinite;
+}
+
+.post-list__link:hover::before,
+.post-list__link:hover::after,
+.post__title:hover::before,
+.post__title:hover::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.post-list__link:hover::before,
+.post__title:hover::before {
+  color: var(--cyber-pink);
+  clip-path: inset(0 0 60% 0);
+  animation: glitch-top 0.3s infinite;
+}
+
+.post-list__link:hover::after,
+.post__title:hover::after {
+  color: var(--cyber-blue);
+  clip-path: inset(40% 0 0 0);
+  animation: glitch-bottom 0.3s infinite;
+}
+
+@keyframes glitch {
+  0%   { transform: translate(0); }
+  20%  { transform: translate(-3px, 3px); }
+  40%  { transform: translate(3px, -3px); }
+  60%  { transform: translate(-2px, -1px); }
+  80%  { transform: translate(2px, 1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-top {
+  0%   { transform: translate(0); }
+  25%  { transform: translate(4px, 0); }
+  50%  { transform: translate(-3px, 0); }
+  75%  { transform: translate(2px, 0); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-bottom {
+  0%   { transform: translate(0); }
+  25%  { transform: translate(-4px, 0); }
+  50%  { transform: translate(3px, 0); }
+  75%  { transform: translate(-2px, 0); }
+  100% { transform: translate(0); }
+}
+
+/* ==========================================================================
+   Typing Animation (Homepage Tagline)
+   ========================================================================== */
+
+.hero__title .typed-text {
+  display: inline;
+  border-right: none;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 2s steps(30, end) 0.5s forwards;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+/* ==========================================================================
+   Post Meta (date, reading time, category)
+   ========================================================================== */
+
+.post-meta {
+  font-family: 'Loved by the King', cursive;
+  font-size: 1.6rem;
+  color: var(--text-muted);
+  margin-bottom: 30px;
+}
+
+.post-meta__separator {
+  margin: 0 6px;
+  color: var(--cyber-purple);
+}
+
+.post-meta__category {
+  color: var(--cyber-green);
+}
+
+/* ==========================================================================
+   About Page
+   ========================================================================== */
+
+.about-intro {
+  font-family: 'Loved by the King', cursive;
+  font-size: 2.2rem;
+  color: var(--cyber-yellow);
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 40px;
+  margin: 40px 0;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--cyber-blue), var(--cyber-purple), var(--cyber-pink));
+}
+
+.timeline__item {
+  position: relative;
+  padding: 12px 0 12px 25px;
+  display: flex;
+  gap: 20px;
+  align-items: baseline;
+}
+
+.timeline__item::before {
+  content: '';
+  position: absolute;
+  left: -34px;
+  top: 18px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cyber-blue);
+  box-shadow: 0 0 8px var(--cyber-blue);
+  border: 2px solid var(--cyber-dark);
+}
+
+.timeline__item--now::before {
+  background: var(--cyber-pink);
+  box-shadow: 0 0 12px var(--cyber-pink);
+  animation: blink 1.5s infinite;
+}
+
+.timeline__year {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: var(--cyber-blue);
+  text-shadow: 0 0 6px rgba(0, 255, 255, 0.3);
+  min-width: 50px;
+  letter-spacing: 1px;
+}
+
+.timeline__item--now .timeline__year {
+  color: var(--cyber-pink);
+  text-shadow: 0 0 8px var(--cyber-pink);
+}
+
+.timeline__event {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--text-main);
+}
+
+.timeline__event a {
+  color: var(--cyber-green);
+  text-decoration: none;
+}
+
+.timeline__event a:hover {
+  text-shadow: 0 0 8px var(--cyber-green);
+}
+
+/* ==========================================================================
+   Comment Terminal
+   ========================================================================== */
+
+.comment-terminal {
+  margin-top: 80px;
+  border-top: 2px solid var(--cyber-purple);
+  padding-top: 40px;
+}
+
+.comment-terminal__header {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--cyber-blue);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.comment-terminal__screen {
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid var(--cyber-green);
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.1), inset 0 0 15px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.comment-terminal__output {
+  color: var(--text-main);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.comment-terminal__output .cmd-help {
+  color: var(--cyber-yellow);
+}
+
+.comment-terminal__output .cmd-prompt {
+  color: var(--cyber-green);
+}
+
+.comment-terminal__output .cmd-error {
+  color: #ff5f57;
+}
+
+.comment-terminal__output .cmd-info {
+  color: var(--cyber-blue);
+}
+
+.comment-terminal__output .cmd-comment {
+  border-left: 2px solid var(--cyber-purple);
+  padding-left: 12px;
+  margin: 8px 0;
+  display: block;
+}
+
+.comment-terminal__output .cmd-comment-author {
+  color: var(--cyber-pink);
+  font-weight: bold;
+}
+
+.comment-terminal__output .cmd-comment-date {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.comment-terminal__output .cmd-comment-body {
+  color: var(--text-main);
+}
+
+.comment-terminal__output a {
+  color: var(--cyber-green);
+  text-decoration: underline;
+}
+
+.comment-terminal__input-line {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 8px;
+}
+
+.comment-terminal__prompt {
+  color: var(--cyber-green);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.comment-terminal__input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  flex: 1;
+  caret-color: var(--cyber-pink);
+}
+
+/* ==========================================================================
+   Hacker News Ticker
+   ========================================================================== */
+
+.hn-ticker {
+  overflow: hidden;
+  border-top: 1px solid var(--cyber-purple);
+  border-bottom: 1px solid var(--cyber-purple);
+  padding: 10px 0;
+  background: rgba(188, 19, 254, 0.05);
+  position: relative;
+}
+
+.hn-ticker__label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--cyber-purple);
+  color: black;
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  padding: 10px 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+}
+
+.hn-ticker__track {
+  display: flex;
+  animation: scroll-ticker 25s linear infinite;
+  padding-left: 80px;
+}
+
+.hn-ticker__track:hover {
+  animation-play-state: paused;
+}
+
+.hn-ticker__item {
+  flex-shrink: 0;
+  padding: 0 30px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.hn-ticker__item a {
+  color: var(--cyber-green);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.hn-ticker__item a:hover {
+  color: var(--cyber-pink);
+  text-shadow: 0 0 8px var(--cyber-pink);
+}
+
+.hn-ticker__item .hn-score {
+  color: var(--cyber-yellow);
+  margin-right: 8px;
+  font-size: 0.7rem;
+}
+
+@keyframes scroll-ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
 /* Blink tag - use <span class="blink">text</span> in posts */
 .blink {
   background: var(--cyber-pink);
@@ -302,7 +665,7 @@ body {
 
 @media (max-width: 768px) {
   .post__title { font-size: 2.5rem; }
-  .hero__title { font-size: 2rem; }
+  .hero__title { font-size: 1.1rem; }
   .terminal__body { padding: 25px; }
   .nav__logo { font-size: 1.8rem; }
 }
