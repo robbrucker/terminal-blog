@@ -291,6 +291,15 @@ body {
 
 @keyframes blink { 50% { opacity: 0; } }
 
+/* Blink tag - use <span class="blink">text</span> in posts */
+.blink {
+  background: var(--cyber-pink);
+  color: var(--cyber-black);
+  box-shadow: 0 0 10px var(--cyber-pink);
+  padding: 0 4px;
+  animation: blink 0.8s infinite;
+}
+
 @media (max-width: 768px) {
   .post__title { font-size: 2.5rem; }
   .hero__title { font-size: 2rem; }

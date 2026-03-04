@@ -1,9 +1,11 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://untitled-1.xyz/'
 languageCode = 'en-us'
 title = 'rob@blog:~$'
 theme = 'terminal'
 
 [markup]
+  [markup.goldmark.renderer]
+    unsafe = true
   [markup.highlight]
     noClasses = false
     lineNos = true
