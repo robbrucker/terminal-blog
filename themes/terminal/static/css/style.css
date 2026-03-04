@@ -23,7 +23,7 @@
   --font-graffiti: 'Permanent+Marker', cursive;
   --font-mono: 'Fira Code', monospace;
   
-  --content-width: 860px;
+  --content-width: 1200px;
 }
 
 /* ==========================================================================
@@ -44,7 +44,7 @@ body {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 60px 20px;
+  padding: 30px 20px;
   overflow-x: hidden;
   background-image: 
     radial-gradient(circle at 50% 0%, rgba(188, 19, 254, 0.15), transparent 70%),
@@ -66,7 +66,7 @@ body {
     0 0 30px rgba(0, 255, 255, 0.2),
     inset 0 0 20px rgba(0, 255, 255, 0.1);
   position: relative;
-  clip-path: polygon(0 20px, 20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%);
+  border-radius: 4px;
 }
 
 .terminal__titlebar {
@@ -277,8 +277,11 @@ body {
   border-top: 2px solid var(--cyber-blue);
   font-family: var(--font-mono);
   color: var(--cyber-green);
-  display: flex;
-  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+.footer__prompt {
+  color: var(--cyber-green);
 }
 
 .cursor {
@@ -616,7 +619,7 @@ body {
 
 .hn-ticker__track {
   display: flex;
-  animation: scroll-ticker 25s linear infinite;
+  animation: scroll-ticker 15s linear infinite;
   padding-left: 80px;
 }
 

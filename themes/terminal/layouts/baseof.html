@@ -35,14 +35,16 @@
   const ticker = document.getElementById('hn-ticker');
   if (!ticker) return;
 
-  fetch('https://hacker-news.firebaseio.com/v0/topstories.json')
+  fetch('https://hacker-news.firebaseio.com/v0/beststories.json')
     .then(r => r.json())
     .then(ids => Promise.all(
-      ids.slice(0, 20).map(id =>
+      ids.slice(0, 30).map(id =>
         fetch('https://hacker-news.firebaseio.com/v0/item/' + id + '.json').then(r => r.json())
       )
     ))
     .then(stories => {
+      stories.sort((a, b) => b.score - a.score);
+      stories = stories.slice(0, 20);
       const track = ticker.querySelector('.hn-ticker__track');
       const html = stories.map(s =>
         '<span class="hn-ticker__item">' +
