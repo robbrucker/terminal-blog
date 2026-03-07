@@ -1,0 +1,33 @@
+{{ define "main" }}
+<article class="post">
+  <header class="post__header">
+    <h1 class="post__title" data-text="$ cat {{ .File.LogicalName }}"><span class="prompt__dollar">$</span> cat {{ .File.LogicalName }}</h1>
+    {{ partial "post-meta.html" . }}
+  </header>
+
+  {{ partial "audio-player.html" . }}
+
+  <div class="post__content">
+    {{ .Content }}
+  </div>
+
+  {{ with .Params.tags }}
+  <div class="post__tags">
+    {{ range . }}
+    <a href="{{ "tags/" | absURL }}{{ . | urlize }}/" class="tag">--{{ . }}</a>
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <nav class="post__nav">
+    {{ with .PrevInSection }}
+    <a href="{{ .RelPermalink }}" class="post__nav-link post__nav-link--prev">← {{ .Title }}</a>
+    {{ end }}
+    {{ with .NextInSection }}
+    <a href="{{ .RelPermalink }}" class="post__nav-link post__nav-link--next">{{ .Title }} →</a>
+    {{ end }}
+  </nav>
+</article>
+
+{{ partial "comments-terminal.html" . }}
+{{ end }}
