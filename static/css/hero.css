@@ -72,7 +72,10 @@
 
 @media (max-width: 700px) {
   .terminal::before,
-  .terminal::after { display: none; }
+  .terminal::after {
+    background-position: center 15%;
+    background-size: 120% auto;
+  }
 }
 
 /* ==========================================================================
