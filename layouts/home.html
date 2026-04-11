@@ -1,0 +1,143 @@
+{{ define "main" }}
+<link rel="stylesheet" href="/css/hero.css">
+
+<section class="hero">
+  <h1 class="hero__title">
+    <span class="prompt__dollar">$</span> <span class="typed-text" id="typed-text"></span><span class="cursor">█</span>
+  </h1>
+</section>
+<script>
+(function() {
+  const taglines = [
+    "untitled project #1",
+    "works on my machine",
+    "it's not a bug, it's a feature",
+    "have you tried turning it off and on again",
+    "rm -rf / your expectations",
+    "segfault in aisle 5",
+    "sudo make me a sandwich",
+    "404: motivation not found",
+    "git push --force and pray",
+    "there are no bugs, only surprises",
+    "deploy on friday. live dangerously.",
+    "powered by caffeine and poor decisions",
+    "it compiled. ship it.",
+    "abandon all hope, ye who enter vim",
+    "this meeting could have been a grep",
+    "optimized for suffering",
+    "only God knows what this does"
+  ];
+
+  const el = document.getElementById('typed-text');
+  let lineIdx = 0;
+  let charIdx = 0;
+  let deleting = false;
+
+  function tick() {
+    const current = taglines[lineIdx];
+
+    if (!deleting) {
+      el.textContent = current.substring(0, charIdx + 1);
+      charIdx++;
+      if (charIdx >= current.length) {
+        setTimeout(function() { deleting = true; tick(); }, 2500);
+        return;
+      }
+      setTimeout(tick, 60 + Math.random() * 40);
+    } else {
+      el.textContent = current.substring(0, charIdx);
+      charIdx--;
+      if (charIdx < 0) {
+        deleting = false;
+        charIdx = 0;
+        lineIdx = (lineIdx + 1) % taglines.length;
+        setTimeout(tick, 400);
+        return;
+      }
+      setTimeout(tick, 30);
+    }
+  }
+
+  setTimeout(tick, 500);
+})();
+</script>
+
+<section class="posts">
+  <h2 class="section__title"><span class="prompt__dollar">$</span> ls ~/posts --recent</h2>
+  <ul class="post-list">
+    {{ range (where site.RegularPages "Section" "posts").ByDate.Reverse | first 5 }}
+    <li class="post-list__item">
+      <time datetime="{{ .Date | time.Format "2006-01-02" }}" class="post-list__date">{{ .Date | time.Format "Jan 02" }}</time>
+      <a href="{{ .RelPermalink }}" class="post-list__link" data-text="{{ .Title }}">{{ .Title }}</a>
+      {{ range .Params.tags }}
+      <span class="tag">--{{ . }}</span>
+      {{ end }}
+    </li>
+    {{ end }}
+  </ul>
+  <a href="/posts/" class="posts__more">ls ~/posts →</a>
+</section>
+
+<script>
+(function() {
+  const levels = [
+    { label: 'TS//SCI', cls: 'clearance--ts' },
+    { label: 'SECRET',  cls: 'clearance--s'  },
+    { label: 'CONFIDENTIAL', cls: 'clearance--c' },
+    { label: 'UNCLASSIFIED', cls: 'clearance--u' },
+  ];
+
+  const deniedLines = [
+    'bash: ./post: Permission denied',
+    '-bash: open: Operation not permitted',
+    'zsh: operation not permitted: read',
+  ];
+
+  const sudoLines = [
+    'sudo cat /posts/{title}',
+    'sudo ./unlock --force {title}',
+    'sudo chmod +r /classified/{title}',
+  ];
+
+  document.querySelectorAll('.post-list__item').forEach(function(item, i) {
+    var lvl = levels[i % levels.length];
+    var link = item.querySelector('.post-list__link');
+    var title = link ? link.textContent.trim() : 'post';
+    var slug = title.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 24);
+
+    // Clearance badge
+    var badge = document.createElement('span');
+    badge.className = 'clearance ' + lvl.cls;
+    badge.textContent = lvl.label;
+    item.insertBefore(badge, item.firstChild);
+
+    // Access terminal output
+    var terminal = document.createElement('div');
+    terminal.className = 'access-terminal';
+    var denied = deniedLines[i % deniedLines.length];
+    var sudo   = sudoLines[i % sudoLines.length].replace('{title}', slug);
+    terminal.innerHTML =
+      '<span class="t-denied">$ ' + denied + '</span><br>' +
+      '<span class="t-sudo">$ ' + sudo + '</span><br>' +
+      '<span class="t-dim">[sudo] password for buck: </span>' +
+      '<span class="t-granted" style="display:none">✓ access granted — decrypting...</span>';
+    item.appendChild(terminal);
+
+    // Show "access granted" after brief hover delay
+    var timer = null;
+    var granted = terminal.querySelector('.t-granted');
+
+    item.addEventListener('mouseenter', function() {
+      timer = setTimeout(function() {
+        granted.style.display = 'inline';
+      }, 700);
+    });
+
+    item.addEventListener('mouseleave', function() {
+      clearTimeout(timer);
+      granted.style.display = 'none';
+    });
+  });
+})();
+</script>
+{{ end }}

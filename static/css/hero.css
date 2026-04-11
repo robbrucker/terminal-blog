@@ -1,0 +1,181 @@
+/* Hero portrait — CSS background with glitch, homepage only */
+
+@keyframes glitch-main {
+  0%           { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  8%           { transform: translate(-6px, 0);      filter: hue-rotate(90deg) brightness(1.5);   opacity: 0.30; clip-path: inset(20% 0 50% 0); }
+  9%           { transform: translate(6px, -3px);    filter: hue-rotate(-90deg) saturate(5);      opacity: 0.25; clip-path: inset(60% 0 10% 0); }
+  10%          { transform: translate(-3px, 2px);    filter: brightness(2) contrast(1.5);          opacity: 0.35; clip-path: inset(40% 0 30% 0); }
+  11%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  25%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  26%          { transform: translate(8px, 0);       filter: hue-rotate(180deg) brightness(1.3);  opacity: 0.26; clip-path: inset(10% 0 70% 0); }
+  27%          { transform: translate(-8px, 1px);    filter: saturate(6) hue-rotate(-45deg);      opacity: 0.22; clip-path: inset(70% 0 5% 0); }
+  28%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  50%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  51%          { transform: translate(-4px, -2px);   filter: hue-rotate(270deg) brightness(1.6);  opacity: 0.32; clip-path: inset(30% 0 40% 0); }
+  52%          { transform: translate(4px, 2px);     filter: hue-rotate(-270deg) saturate(3);     opacity: 0.24; clip-path: inset(5% 0 80% 0); }
+  53%          { transform: translate(-2px, 0);      filter: brightness(1.8);                     opacity: 0.28; clip-path: inset(55% 0 15% 0); }
+  54%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  75%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  76%          { transform: translate(5px, -1px);    filter: hue-rotate(90deg) saturate(4);       opacity: 0.29; clip-path: inset(45% 0 25% 0); }
+  77%          { transform: translate(-5px, 1px);    filter: hue-rotate(-135deg) brightness(1.4); opacity: 0.23; clip-path: inset(15% 0 65% 0); }
+  78%          { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+  100%         { transform: translate(0, 0);         filter: none;                                opacity: 0.18; clip-path: none; }
+}
+
+@keyframes glitch-ghost {
+  0%           { opacity: 0; transform: translate(0, 0); }
+  8%           { opacity: 0.15; transform: translate(10px, 0);    filter: hue-rotate(180deg); }
+  9%           { opacity: 0.10; transform: translate(-10px, 0);   filter: hue-rotate(-180deg); }
+  10%          { opacity: 0.12; transform: translate(5px, -3px);  filter: hue-rotate(90deg); }
+  11%          { opacity: 0; }
+  26%          { opacity: 0.13; transform: translate(-12px, 0);   filter: hue-rotate(270deg); }
+  27%          { opacity: 0.08; transform: translate(12px, 2px);  filter: hue-rotate(-270deg); }
+  28%          { opacity: 0; }
+  51%          { opacity: 0.14; transform: translate(8px, -2px);  filter: hue-rotate(135deg); }
+  52%          { opacity: 0.09; transform: translate(-8px, 2px);  filter: hue-rotate(-135deg); }
+  53%          { opacity: 0; }
+  76%          { opacity: 0.11; transform: translate(-6px, 0);    filter: hue-rotate(200deg); }
+  77%          { opacity: 0.07; transform: translate(6px, -1px);  filter: hue-rotate(-200deg); }
+  78%          { opacity: 0; }
+  100%         { opacity: 0; }
+}
+
+.terminal::before,
+.terminal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('/images/hero-portrait.webp');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  pointer-events: none;
+  border-radius: 4px;
+}
+
+.terminal::before {
+  z-index: 0;
+  animation: glitch-main 4s linear infinite;
+}
+
+.terminal::after {
+  z-index: 0;
+  mix-blend-mode: screen;
+  animation: glitch-ghost 4s linear infinite;
+}
+
+/* Content stays above */
+.terminal > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .terminal::before,
+  .terminal::after { display: none; }
+}
+
+/* ==========================================================================
+   Classified Post List
+   ========================================================================== */
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+
+.post-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+  flex-wrap: wrap;
+  position: relative;
+}
+
+/* Clearance badge */
+.post-list__item .clearance {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border: 1px solid currentColor;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.clearance--ts  { color: #ff3b3b; border-color: #ff3b3b; text-shadow: 0 0 8px #ff3b3b; }
+.clearance--s   { color: #ff9500; border-color: #ff9500; text-shadow: 0 0 8px #ff9500; }
+.clearance--c   { color: var(--cyber-yellow); border-color: var(--cyber-yellow); text-shadow: 0 0 8px var(--cyber-yellow); }
+.clearance--u   { color: var(--cyber-green);  border-color: var(--cyber-green);  text-shadow: 0 0 8px var(--cyber-green); }
+
+/* Link */
+.post-list__link {
+  font-size: 1.5rem !important;
+  font-family: var(--font-heading) !important;
+  color: var(--cyber-blue) !important;
+  text-decoration: none;
+  display: inline-block !important;
+  animation: none !important;
+  cursor: pointer;
+}
+
+.post-list__link::before,
+.post-list__link::after {
+  display: none !important;
+}
+
+.post-list__item:hover .post-list__link,
+.post-list__item.unlocked .post-list__link {
+  text-shadow: 0 0 12px var(--cyber-blue);
+}
+
+/* Terminal output overlay */
+.post-list__item .access-terminal {
+  display: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  flex-basis: 100%;
+  padding: 6px 0 2px 0;
+  line-height: 1.7;
+}
+
+.post-list__item:hover .access-terminal,
+.post-list__item.unlocked .access-terminal {
+  display: block;
+}
+
+.access-terminal .t-denied  { color: #ff3b3b; }
+.access-terminal .t-sudo    { color: var(--cyber-yellow); }
+.access-terminal .t-granted { color: var(--cyber-green); }
+.access-terminal .t-dim     { color: var(--text-muted); }
+
+/* Date */
+.post-list__date {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  flex-shrink: 0;
+  padding-top: 7px;
+}
+
+/* Tags */
+.post-list__item .tag {
+  font-size: 0.78rem;
+}
+
+/* Section title bigger */
+.section__title {
+  font-size: 1.4rem !important;
+}
+
+/* "ls ~/posts →" link */
+.posts__more {
+  font-size: 1rem;
+  margin-top: 20px;
+  display: inline-block;
+}
