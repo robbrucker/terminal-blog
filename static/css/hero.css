@@ -96,14 +96,17 @@ a:hover { color: var(--cyber-pink); text-decoration: none; }
 .post-nav a,
 .post__footer a { color: var(--cyber-blue); }
 
+@keyframes hex-glow {
+  0%, 100% { filter: brightness(1.4) saturate(1.3) blur(0px); opacity: 0.18; }
+  50%       { filter: brightness(2.2) saturate(2.0) blur(1px); opacity: 0.24; }
+}
+
 /* Inner pages: glowing hex bg */
 body:not(.kind-home) .terminal::before {
   background-image: url('/images/cyber-bg.webp');
   background-size: cover;
   background-position: center center;
-  opacity: 0.18;
-  filter: brightness(1.6) saturate(1.4);
-  animation: none;
+  animation: hex-glow 4s ease-in-out infinite;
 }
 body:not(.kind-home) .terminal::after { display: none; }
 
