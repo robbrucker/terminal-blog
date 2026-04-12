@@ -96,12 +96,13 @@ a:hover { color: var(--cyber-pink); text-decoration: none; }
 .post-nav a,
 .post__footer a { color: var(--cyber-blue); }
 
-/* Inner pages: circuit board bg instead of portrait */
+/* Inner pages: glowing hex bg */
 body:not(.kind-home) .terminal::before {
   background-image: url('/images/cyber-bg.webp');
   background-size: cover;
   background-position: center center;
-  opacity: 0.12;
+  opacity: 0.18;
+  filter: brightness(1.6) saturate(1.4);
   animation: none;
 }
 body:not(.kind-home) .terminal::after { display: none; }
