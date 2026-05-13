@@ -31,17 +31,19 @@ The videos got views. Probably my neighbor checking what I was up to. The funnel
 
 **The videos:**
 
-https://www.tiktok.com/t/ZTkTcHr8B/
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7638622196360809758" data-video-id="7638622196360809758" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>https://www.echobat.xyz/</p> </section> </blockquote>
 
-https://www.tiktok.com/t/ZTkTcaAu6/
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637904503555067166" data-video-id="7637904503555067166" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>Want to use ai to build a game?</p> </section> </blockquote>
 
-https://www.tiktok.com/t/ZTkTcmfwk/
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637895742157245726" data-video-id="7637895742157245726" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>https://www.echobat.xyz/</p> </section> </blockquote>
 
-https://www.tiktok.com/t/ZTkTcAnRn/
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637890858129329422" data-video-id="7637890858129329422" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>https://apps.apple.com/us/app/echo-bat-ping-the-dark/id6763828424</p> </section> </blockquote>
 
-https://www.tiktok.com/t/ZTkTcDt1S/
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637878471242403102" data-video-id="7637878471242403102" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>I used claude code and replicate to build this</p> </section> </blockquote>
 
-https://www.tiktok.com/t/ZTkTcaBdU/
+<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637877877232454942" data-video-id="7637877877232454942" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>Asking for some spare change</p> </section> </blockquote>
+
+<script async src="https://www.tiktok.com/embed.js"></script>
 
 ---
 
