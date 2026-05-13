@@ -31,19 +31,12 @@ The videos got views. Probably my neighbor checking what I was up to. The funnel
 
 **The videos:**
 
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7638622196360809758" data-video-id="7638622196360809758" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>https://www.echobat.xyz/</p> </section> </blockquote>
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637904503555067166" data-video-id="7637904503555067166" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>Want to use ai to build a game?</p> </section> </blockquote>
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637895742157245726" data-video-id="7637895742157245726" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>https://www.echobat.xyz/</p> </section> </blockquote>
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637890858129329422" data-video-id="7637890858129329422" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>https://apps.apple.com/us/app/echo-bat-ping-the-dark/id6763828424</p> </section> </blockquote>
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637878471242403102" data-video-id="7637878471242403102" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>I used claude code and replicate to build this</p> </section> </blockquote>
-
-<blockquote class="tiktok-embed" cite="https://www.tiktok.com/@echobatdev/video/7637877877232454942" data-video-id="7637877877232454942" style="max-width:605px; min-width:325px;"> <section> <a target="_blank" title="@echobatdev" href="https://www.tiktok.com/@echobatdev?refer=embed">@echobatdev</a> <p>Asking for some spare change</p> </section> </blockquote>
-
-<script async src="https://www.tiktok.com/embed.js"></script>
+- https://www.tiktok.com/t/ZTkTcHr8B/
+- https://www.tiktok.com/t/ZTkTcaAu6/
+- https://www.tiktok.com/t/ZTkTcmfwk/
+- https://www.tiktok.com/t/ZTkTcAnRn/
+- https://www.tiktok.com/t/ZTkTcDt1S/
+- https://www.tiktok.com/t/ZTkTcaBdU/
 
 ---
 
@@ -71,7 +64,9 @@ Why Solana? Because Ethereum gas would cost more than the token ever will. Becau
 
 ## The Honest Part
 
-We have two sales, both from people I already know. Our TikTok ads are done. We have no money left and no proof of concept. The token has maybe 20-30 holders, all of them people who feel bad for me or want to see what happens when you staple a blockchain to a dead product.
+We have two sales, both from people I already know. Our TikTok ads are done. We have no money left and no proof of concept. The token holders are snipers — people who bought in at launch just to see what happens. That's it. Snipers. No community. No believers. Just the speed-run crowd watching to see if the price does anything.
+
+**Get PING here:** [pump.fun/coin/Cg6ey1RMMXzkW7ZiXghzPh9dd3HZqwMitUM1ehrBpump](https://pump.fun/coin/Cg6ey1RMMXzkW7ZiXghzPh9dd3HZqwMitUM1ehrBpump)
 
 This is not a hockey-stick growth story. This is a guy with a cave and a bat watching both sit empty, desperately hoping that selling shares in his failure is somehow different from asking people to buy the failure outright.
 
